@@ -1,0 +1,64 @@
+Download "Oracle Database Express Edition 11g Release 2 for Windows x64 / Oracle Database Express Edition 11g Release 2 for Windows x32" from below link. 
+http://www.oracle.com/technetwork/products/express-edition/downloads/index.html#
+ 
+Username: ramesh@aspirecareers.in
+Password: Aspire24
+
+The Oracle Express Edition installation automatically comes with "system" & "sys" accounts. During installation, we have to enter common password for both accounts. The standard password is "manager". However you can set different password.
+
+Once installation completes, the %ORACLE_HOME%\bin folder should be automatically added to path.
+C:\>echo %PATH%
+C:\oraclexe\app\oracle\product\11.2.0\server\bin
+
+Oracle installation provides 3 components such as:
+	1) Oracle DB			[1521]
+	2) Oracle Web Server		[8080]
+	3) Oracle Microsoft Server	[2030]
+
+Check whether oracle services are started or not.
+Run--> services.msc
+OracleServiceXE --"Started" status --> Statup type is "Automatic"
+OracleXETNSListener --"Started" status --> Statup type is "Automatic"
+
+Also check two files after ORACLE installation:
+1) %ORACLE_HOME%\NETWORK\ADMIN\tnsnames.ora
+   The above file contains HOST name, DB Port number (default 1521), SERVICE_NAME( default is 'XE' in case of expression edition)
+   Note: If at all computer host name is changed through settings then changing HOST in tnsnames.ora file is needed.
+   Note: By default The 'OracleServiceXE' status is Running with Startup Type is Automatic. Otherwise we need to edit tnsnames.ora file.
+
+2) %ORACLE_HOME%\NETWORK\ADMIN\listener.ora
+   The above file contains HOST name, DB Port number (default 1521)  DEFAULT_SERVICE_LISTENER (default is 'XE')
+   Note: If at all computer host name is changed through settings then changing HOST in listener.ora file is needed.
+   Note: By default The 'OracleXETNSListener' status is Running with Startup Type is Automatic. Otherwise we need to edit listener.ora file.
+
+Connect with Oracle DB Server
+=============================
+There are many ways to connect with Oracle DB Server:
+1) Connect through console
+   C:\> sqlplus system/manager@xe
+   SQL:\>
+
+2) Connect through Oracle Web Server
+   http://localhost:8080/apex
+   Username: system
+   Password: manager
+   
+   Navigation: Home --> Click on 'SQL' -->  Click on 'SQL Commands'
+
+3) Connect through tools such as DB Visualizer, Toad, etc
+   Goto 'Database' menu --> Select 'Create Database Connection' menu item --> Click on 'Use Wizard' --> Give name  'AspireOracle' --> Select Database Driver 'Oracle Thin' --> Next -->
+   Service : XE
+   Database Userid: system
+   Database Password: manager
+   Click on 'Ping Server'
+   Finally click on 'Finish'
+
+Oracle DB Commands
+==================
+Run below db commands from Console (OR) Oracle Web Server (OR) Tools:
+CREATE TABLE STUDENT(SNO NUMBER(3) PRIMARY KEY, SNAME VARCHAR2(100), EMAIL VARCHAR2(100), MOBILE NUMBER(10));
+INSERT INTO STUDENT VALUES(1, 'abc', 'abc@java2aspire.com', 7799108899);
+SELECT * FROM STUDENT;
+UPDATE STUDENT SET MOBILE=9885407683 WHERE SNO=1;
+DELETE FROM STUDENT WHERE SNO=1;
+
